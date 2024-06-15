@@ -1,0 +1,262 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1718278479806-1
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_buyer_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-2
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_employee_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-3
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_order_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-4
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_prod_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-5
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-6
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_role_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1718278479806-7
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_buyer
+                  name: id_buyer
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone_number
+                  type: VARCHAR(255)
+            tableName: buyer
+  - changeSet:
+      id: 1718278479806-8
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_employee
+                  name: id_employee
+                  type: BIGINT
+              - column:
+                  name: name_employee
+                  type: VARCHAR(255)
+              - column:
+                  name: surname_employee
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone_number_employee
+                  type: VARCHAR(255)
+            tableName: employee
+  - changeSet:
+      id: 1718278479806-9
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_order
+                  name: id_order
+                  type: BIGINT
+              - column:
+                  name: id_product
+                  type: BIGINT
+              - column:
+                  name: count_product_in_order
+                  type: BIGINT
+              - column:
+                  name: id_buyer
+                  type: BIGINT
+              - column:
+                  name: id_employee
+                  type: BIGINT
+              - column:
+                  name: date_added_order
+                  type: DATETIME
+            tableName: order
+  - changeSet:
+      id: 1718278479806-10
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_product
+                  name: id_product
+                  type: BIGINT
+              - column:
+                  name: product_name
+                  type: VARCHAR(255)
+              - column:
+                  name: product_available_in_stock
+                  type: BIGINT
+              - column:
+                  name: price
+                  type: BIGINT
+              - column:
+                  name: discount
+                  type: BIGINT
+            tableName: product
+  - changeSet:
+      id: 1718278479806-11
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user_roles
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: user_authority
+                  type: SMALLINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: user_roles
+  - changeSet:
+      id: 1718278479806-12
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: expired
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: locked
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: enabled
+                  type: BOOLEAN
+            tableName: users
+  - changeSet:
+      id: 1718278479806-13
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_buyer
+            baseTableName: order
+            constraintName: FK_ORDER_ON_ID_BUYER
+            referencedColumnNames: id_buyer
+            referencedTableName: buyer
+  - changeSet:
+      id: 1718278479806-14
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_employee
+            baseTableName: order
+            constraintName: FK_ORDER_ON_ID_EMPLOYEE
+            referencedColumnNames: id_employee
+            referencedTableName: employee
+  - changeSet:
+      id: 1718278479806-15
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_product
+            baseTableName: order
+            constraintName: FK_ORDER_ON_ID_PRODUCT
+            referencedColumnNames: id_product
+            referencedTableName: product
+  - changeSet:
+      id: 1718278479806-16
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_roles
+            constraintName: FK_USER_ROLES_ON_USER
+            referencedColumnNames: id
+            referencedTableName: users
+
